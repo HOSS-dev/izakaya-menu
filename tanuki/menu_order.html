@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>串揚げ たぬき｜Menu</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ648GWJ9Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TQ648GWJ9Z');
+  </script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
@@ -634,6 +642,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 function setLang(l){
+  if(lang!==l)gtag('event','lang_switch',{language:l});
   lang=l;const t=T[l];
   const nk=l==='jp'?'nameJp':l==='en'?'nameEn':'nameZh';
   const dk=l==='jp'?'descJp':l==='en'?'descEn':'descZh';
@@ -695,6 +704,7 @@ function getItemData(id){
 function addToMemo(id){
   if(memo[id]){memo[id].qty++}
   else{const d=getItemData(id);if(!d)return;memo[id]={...d,qty:1}}
+  gtag('event','add_to_memo',{item_id:id,item_name:memo[id].nameJp,quantity:memo[id].qty});
   updateMemoUI();
   const btn=document.getElementById('ab-'+id);
   if(btn){
@@ -757,6 +767,7 @@ function closeMemo(){document.getElementById('memo-ov').classList.remove('show')
 
 function showStaff(){
   const entries=Object.entries(memo);if(!entries.length)return;
+  gtag('event','show_to_staff',{item_count:entries.length,items:entries.map(([,i])=>i.nameJp).join(',')});
   document.getElementById('staff-list').innerHTML=entries.map(([,item])=>
     `<div class="staff-row"><span class="staff-row-name">${item.nameJp}</span><span class="staff-row-qty">× ${item.qty}</span><span class="staff-row-price">¥${(item.price*item.qty).toLocaleString()}</span></div>`).join('');
   document.getElementById('memo-ov').classList.remove('show');
@@ -766,6 +777,7 @@ function closeStaff(){
   document.getElementById('staff-ov').classList.remove('show');
   document.body.style.overflow='';
   if(Object.keys(memo).length&&confirm(T[lang].memo_clear_confirm)){
+    gtag('event','memo_cleared');
     Object.keys(memo).forEach(k=>delete memo[k]);
     document.querySelectorAll('.add-btn').forEach(btn=>{btn.textContent=T[lang].add_label;btn.classList.remove('has-qty')});
     updateMemoUI();
