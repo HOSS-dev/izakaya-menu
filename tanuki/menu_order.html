@@ -201,6 +201,11 @@
     #lightbox img{max-width:92vw;max-height:80vh;border-radius:10px;object-fit:contain}
     #lb-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:22px;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
     #lb-cap{color:rgba(255,255,255,.6);font-size:14px;margin-top:12px}
+
+    /* ── Choice overlay (味・飲み方) ── */
+    #choice-ov{background:var(--bg);z-index:320}
+    .choice-opt-btn{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:10px;font-size:16px;font-weight:600;color:var(--text);cursor:pointer;text-align:left;transition:.15s;-webkit-tap-highlight-color:transparent;display:block}
+    .choice-opt-btn:active{border-color:var(--gold);background:var(--gold-s)}
   </style>
 </head>
 <body>
@@ -282,27 +287,27 @@
 
   <!-- Premium ¥275 -->
   <div class="cat"><h3 data-t="cat_premium">特選串</h3><div class="line"></div><span class="cat-price">¥275<span data-t="per_skewer"> / 本</span></span></div>
+  <div class="ri item" data-id="6" data-name-jp="ぶり" data-name-en="Yellowtail" data-name-zh="鰤鱼" data-price="275"><div class="ri-thumb" onclick="openLB(this,'ぶり')"><img src="img/thumb_buri.jpg" alt="ぶり" /></div><div class="ri-left"><span class="ri-name item-name">ぶり</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
+  <div class="ri item" data-id="7" data-name-jp="はも" data-name-en="Conger Eel" data-name-zh="海鳗" data-price="275"><div class="ri-thumb" onclick="openLB(this,'はも')"><img src="img/thumb_hamo.jpg" alt="はも" /></div><div class="ri-left"><span class="ri-name item-name">はも</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="夏季限定" data-desc-en="Summer only" data-desc-zh="夏季限定">夏季限定</span></div><div class="ri-right"></div></div>
   <div class="ri item" data-id="9" data-name-jp="いか鳴門巻き" data-name-en="Squid Naruto Roll" data-name-zh="鱿鱼鸣门卷" data-price="275"><div class="ri-thumb" onclick="openLB(this,'いか鳴門巻き')"><img src="img/thumb_ika_naruto.jpg" alt="いか鳴門巻き" /></div><div class="ri-left"><span class="ri-name item-name">いか鳴門巻き</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
   <div class="ri item" data-id="10" data-name-jp="有頭海老" data-name-en="Head-on Shrimp" data-name-zh="带头虾" data-price="275"><div class="ri-thumb" onclick="openLB(this,'有頭海老')"><img src="img/thumb_ebi.jpg" alt="有頭海老" /></div><div class="ri-left"><span class="ri-name item-name">有頭海老</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
+  <div class="ri item" data-id="13" data-name-jp="辛子明太子" data-name-en="Spicy Cod Roe" data-name-zh="辣鳕鱼子" data-price="275"><div class="ri-thumb" onclick="openLB(this,'辛子明太子')"><img src="img/thumb_karashi_mentaiko.jpg" alt="辛子明太子" /></div><div class="ri-left"><span class="ri-name item-name">辛子明太子</span><span class="ri-sub item-sub"></span><span class="tag t-spicy" data-t="tag_spicy">辛口</span></div><div class="ri-right"></div></div>
   <div class="grid">
-    <div class="gi item" data-id="6" data-name-jp="ぶり" data-name-en="Yellowtail" data-name-zh="鰤鱼" data-price="275"><div class="gi-left"><span class="gi-name item-name">ぶり</span><span class="gi-sub item-sub"></span></div></div>
-    <div class="gi item" data-id="7" data-name-jp="はも" data-name-en="Conger Eel" data-name-zh="海鳗" data-price="275"><div class="gi-left"><span class="gi-name item-name">はも</span><span class="gi-sub item-sub"></span><span class="gi-note" data-note-jp="夏季限定" data-note-en="Summer only" data-note-zh="夏季限定">夏季限定</span></div></div>
     <div class="gi item" data-id="8" data-name-jp="牡蛎" data-name-en="Oyster" data-name-zh="牡蛎" data-price="275"><div class="gi-left"><span class="gi-name item-name">牡蛎</span><span class="gi-sub item-sub"></span><span class="gi-note" data-note-jp="冬季限定" data-note-en="Winter only" data-note-zh="冬季限定">冬季限定</span></div></div>
     <div class="gi item" data-id="11" data-name-jp="アスパラ" data-name-en="Asparagus" data-name-zh="芦笋" data-price="275"><div class="gi-left"><span class="gi-name item-name">アスパラ</span><span class="gi-sub item-sub"></span><span class="gi-note" data-note-jp="巻き +¥55" data-note-en="+¥55 bacon wrap" data-note-zh="+¥55培根卷">巻き +¥55</span></div><span class="tag t-veg" data-t="tag_veg">ベジ</span></div>
     <div class="gi item" data-id="12" data-name-jp="ピーマン肉詰め" data-name-en="Stuffed Pepper" data-name-zh="肉馅彩椒" data-price="275"><div class="gi-left"><span class="gi-name item-name">ピーマン肉詰め</span><span class="gi-sub item-sub"></span></div></div>
-    <div class="gi item" data-id="13" data-name-jp="辛子明太子" data-name-en="Spicy Cod Roe" data-name-zh="辣鳕鱼子" data-price="275"><div class="gi-left"><span class="gi-name item-name">辛子明太子</span><span class="gi-sub item-sub"></span></div><span class="tag t-spicy" data-t="tag_spicy">辛口</span></div>
   </div>
 
   <!-- Standard ¥198 -->
   <div class="cat"><h3 data-t="cat_standard">定番串</h3><div class="line"></div><span class="cat-price">¥198<span data-t="per_skewer"> / 本</span></span></div>
   <div class="ri item" data-id="22" data-name-jp="ウインナーうずら" data-name-en="Sausage &amp; Quail Egg" data-name-zh="香肠鹌鹑蛋" data-price="198"><div class="ri-thumb" onclick="openLB(this,'ウインナーうずら')"><img src="img/thumb_wiener_uzura.jpg" alt="ウインナーうずら" /></div><div class="ri-left"><span class="ri-name item-name">ウインナーうずら</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
   <div class="ri item" data-id="24" data-name-jp="のびーるチーズ" data-name-en="Stretchy Mozzarella" data-name-zh="拉丝芝士" data-price="198"><div class="ri-thumb" onclick="openLB(this,'のびーるチーズ')"><img src="img/thumb_nobiru_cheese.jpg" alt="のびーるチーズ" /></div><div class="ri-left"><span class="ri-name item-name">のびーるチーズ</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
+  <div class="ri item" data-id="18" data-name-jp="豚チーズ" data-name-en="Pork &amp; Cheese" data-name-zh="猪肉芝士" data-price="198"><div class="ri-thumb" onclick="openLB(this,'豚チーズ')"><img src="img/thumb_buta_cheese.jpg" alt="豚チーズ" /></div><div class="ri-left"><span class="ri-name item-name">豚チーズ</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
   <div class="ri item" data-id="14" data-name-jp="牛ハラミ" data-name-en="Beef Skirt" data-name-zh="牛腹肉" data-price="198"><div class="ri-thumb" onclick="openLB(this,'牛ハラミ')"><img src="img/thumb_gyuharami.jpg" alt="牛ハラミ" /></div><div class="ri-left"><span class="ri-name item-name">牛ハラミ</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
   <div class="ri item" data-id="15" data-name-jp="せせり" data-name-en="Chicken Neck" data-name-zh="鸡颈肉" data-price="198"><div class="ri-thumb" onclick="openLB(this,'せせり')"><img src="img/thumb_seseri.jpg" alt="せせり" /></div><div class="ri-left"><span class="ri-name item-name">せせり</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
   <div class="ri item" data-id="16" data-name-jp="砂ずり" data-name-en="Chicken Gizzard" data-name-zh="鸡胗" data-price="198"><div class="ri-thumb" onclick="openLB(this,'砂ずり')"><img src="img/thumb_sunazuri.jpg" alt="砂ずり" /></div><div class="ri-left"><span class="ri-name item-name">砂ずり</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
   <div class="grid">
     <div class="gi item" data-id="17" data-name-jp="ハムカツ" data-name-en="Ham Cutlet" data-name-zh="炸火腿" data-price="198"><div class="gi-left"><span class="gi-name item-name">ハムカツ</span><span class="gi-sub item-sub"></span></div></div>
-    <div class="gi item" data-id="18" data-name-jp="豚チーズ" data-name-en="Pork &amp; Cheese" data-name-zh="猪肉芝士" data-price="198"><div class="gi-left"><span class="gi-name item-name">豚チーズ</span><span class="gi-sub item-sub"></span></div></div>
     <div class="gi item" data-id="19" data-name-jp="豚にら巻き" data-name-en="Pork Chive Roll" data-name-zh="猪肉韭菜卷" data-price="198"><div class="gi-left"><span class="gi-name item-name">豚にら巻き</span><span class="gi-sub item-sub"></span></div></div>
     <div class="gi item" data-id="20" data-name-jp="なす肉" data-name-en="Eggplant &amp; Pork" data-name-zh="茄子猪肉" data-price="198"><div class="gi-left"><span class="gi-name item-name">なす肉</span><span class="gi-sub item-sub"></span></div></div>
     <div class="gi item" data-id="21" data-name-jp="れんこんミンチ" data-name-en="Lotus Root &amp; Pork" data-name-zh="莲藕肉末" data-price="198"><div class="gi-left"><span class="gi-name item-name">れんこんミンチ</span><span class="gi-sub item-sub"></span></div></div>
@@ -318,6 +323,7 @@
   <!-- Budget ¥154 -->
   <div class="cat"><h3 data-t="cat_budget">お手頃串</h3><div class="line"></div><span class="cat-price">¥154<span data-t="per_skewer"> / 本</span></span></div>
   <div class="ri item" data-id="32" data-name-jp="山芋" data-name-en="Japanese Yam" data-name-zh="山药" data-price="154"><div class="ri-thumb" onclick="openLB(this,'山芋')"><img src="img/thumb_yamaimo.jpg" alt="山芋" /></div><div class="ri-left"><span class="ri-name item-name">山芋</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="tag t-veg" data-t="tag_veg">ベジ</span></div></div>
+  <div class="ri item" data-id="34" data-name-jp="白ネギ" data-name-en="Welsh Onion" data-name-zh="大葱" data-price="154"><div class="ri-thumb" onclick="openLB(this,'白ネギ')"><img src="img/thumb_shironegi.jpg" alt="白ネギ" /></div><div class="ri-left"><span class="ri-name item-name">白ネギ</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="tag t-veg" data-t="tag_veg">ベジ</span></div></div>
   <div class="ri item" data-id="37" data-name-jp="おもち" data-name-en="Mochi" data-name-zh="年糕" data-price="154"><div class="ri-thumb" onclick="openLB(this,'おもち')"><img src="img/thumb_omochi.jpg" alt="おもち" /></div><div class="ri-left"><span class="ri-name item-name">おもち</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="tag t-veg" data-t="tag_veg">ベジ</span></div></div>
   <div class="ri item" data-id="47" data-name-jp="ちくわチーズ" data-name-en="Chikuwa &amp; Cheese" data-name-zh="竹轮芝士" data-price="154"><div class="ri-thumb" onclick="openLB(this,'ちくわチーズ')"><img src="img/thumb_chikuwa_cheese.jpg" alt="ちくわチーズ" /></div><div class="ri-left"><span class="ri-name item-name">ちくわチーズ</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
   <div class="ri item" data-id="48" data-name-jp="赤ウインナー" data-name-en="Red Sausage" data-name-zh="红香肠" data-price="154"><div class="ri-thumb" onclick="openLB(this,'赤ウインナー')"><img src="img/thumb_aka_wiener.jpg" alt="赤ウインナー" /></div><div class="ri-left"><span class="ri-name item-name">赤ウインナー</span><span class="ri-sub item-sub"></span></div><div class="ri-right"></div></div>
@@ -326,7 +332,6 @@
     <div class="gi item" data-id="30" data-name-jp="なす" data-name-en="Eggplant" data-name-zh="茄子" data-price="154"><div class="gi-left"><span class="gi-name item-name">なす</span><span class="gi-sub item-sub"></span></div><span class="tag t-veg" data-t="tag_veg">ベジ</span></div>
     <div class="gi item" data-id="31" data-name-jp="エリンギ" data-name-en="King Oyster Mushroom" data-name-zh="杏鲍菇" data-price="154"><div class="gi-left"><span class="gi-name item-name">エリンギ</span><span class="gi-sub item-sub"></span></div><span class="tag t-veg" data-t="tag_veg">ベジ</span></div>
     <div class="gi item" data-id="33" data-name-jp="うずら" data-name-en="Quail Egg" data-name-zh="鹌鹑蛋" data-price="154"><div class="gi-left"><span class="gi-name item-name">うずら</span><span class="gi-sub item-sub"></span></div></div>
-    <div class="gi item" data-id="34" data-name-jp="白ネギ" data-name-en="Welsh Onion" data-name-zh="大葱" data-price="154"><div class="gi-left"><span class="gi-name item-name">白ネギ</span><span class="gi-sub item-sub"></span></div><span class="tag t-veg" data-t="tag_veg">ベジ</span></div>
     <div class="gi item" data-id="35" data-name-jp="しいたけ" data-name-en="Shiitake" data-name-zh="香菇" data-price="154"><div class="gi-left"><span class="gi-name item-name">しいたけ</span><span class="gi-sub item-sub"></span></div><span class="tag t-veg" data-t="tag_veg">ベジ</span></div>
     <div class="gi item" data-id="36" data-name-jp="れんこん" data-name-en="Lotus Root" data-name-zh="莲藕" data-price="154"><div class="gi-left"><span class="gi-name item-name">れんこん</span><span class="gi-sub item-sub"></span></div><span class="tag t-veg" data-t="tag_veg">ベジ</span></div>
     <div class="gi item" data-id="38" data-name-jp="ししとう" data-name-en="Shishito Pepper" data-name-zh="青辣椒" data-price="154"><div class="gi-left"><span class="gi-name item-name">ししとう</span><span class="gi-sub item-sub"></span></div><span class="tag t-veg" data-t="tag_veg">ベジ</span></div>
@@ -361,16 +366,16 @@
   <div class="ri item" data-id="59" data-name-jp="牛すじどて煮" data-name-en="Beef Tendon Stew" data-name-zh="牛筋味噌炖" data-price="528"><div class="ri-left"><span class="ri-name item-name">牛すじどて煮</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="じっくり煮込んだ人気メニュー" data-desc-en="Slow-cooked beef tendon in miso ★" data-desc-zh="慢炖牛筋味噌煮 ★">じっくり煮込んだ人気メニュー</span></div><div class="ri-right"><span class="tag t-popular" data-t="tag_popular">人気</span><span class="ri-price">¥528</span></div></div>
   <div class="ri item" data-id="60" data-name-jp="たぬきのポテトサラダ" data-name-en="Tanuki Potato Salad" data-name-zh="土豆沙拉" data-price="528"><div class="ri-left"><span class="ri-name item-name">たぬきのポテトサラダ</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="天かすをトッピング" data-desc-en="Topped with tempura bits" data-desc-zh="配天妇罗碎">天かすをトッピング</span></div><div class="ri-right"><span class="tag t-popular" data-t="tag_popular">人気</span><span class="ri-price">¥528</span></div></div>
   <div class="ri item" data-id="61" data-name-jp="インカのポテトフライ" data-name-en="Inca Potato Fries" data-name-zh="印卡土豆薯条" data-price="528"><div class="ri-left"><span class="ri-name item-name">インカのポテトフライ</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥528</span></div></div>
-  <div class="ri item" data-id="62" data-name-jp="だし巻き明太子" data-name-en="Dashi Egg Roll (Mentaiko)" data-name-zh="鳕鱼子玉子烧" data-price="748"><div class="ri-left"><span class="ri-name item-name">だし巻き明太子</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥748</span></div></div>
+  <div class="ri item" data-id="62" data-name-jp="だし巻き明太子" data-name-en="Dashi Egg Roll (Mentaiko)" data-name-zh="鳕鱼子玉子烧" data-price="748"><div class="ri-thumb" onclick="openLB(this,'だし巻き明太子')"><img src="img/thumb_dashimaki_mentaiko.jpg" alt="だし巻き明太子" /></div><div class="ri-left"><span class="ri-name item-name">だし巻き明太子</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥748</span></div></div>
   <div class="ri item" data-id="63" data-name-jp="ネギ入りだし巻き" data-name-en="Dashi Egg Roll (Green Onion)" data-name-zh="葱花玉子烧" data-price="638"><div class="ri-left"><span class="ri-name item-name">ネギ入りだし巻き</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥638</span></div></div>
   <div class="ri item" data-id="64" data-name-jp="ニラ玉炒め" data-name-en="Chive &amp; Egg Stir Fry" data-name-zh="韭菜炒蛋" data-price="583"><div class="ri-left"><span class="ri-name item-name">ニラ玉炒め</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥583</span></div></div>
   <div class="ri item" data-id="65" data-name-jp="若鶏唐揚げ" data-name-en="Fried Chicken (Karaage)" data-name-zh="日式炸鸡" data-price="638"><div class="ri-left"><span class="ri-name item-name">若鶏唐揚げ</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥638</span></div></div>
   <div class="ri item" data-id="66" data-name-jp="牛ハラミステーキ" data-name-en="Beef Skirt Steak" data-name-zh="牛腹肉排" data-price="858"><div class="ri-left"><span class="ri-name item-name">牛ハラミステーキ</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥858</span></div></div>
 
   <div class="cat"><h3 data-t="cat_shime">〆もの</h3><div class="line"></div></div>
-  <div class="ri item" data-id="67" data-name-jp="焼きそば" data-name-en="Yakisoba" data-name-zh="炒面" data-price="660"><div class="ri-thumb" onclick="openLB(this,'焼きそば（ソース味）')"><img src="img/thumb_yakisoba.jpg" alt="焼きそば" /></div><div class="ri-left"><span class="ri-name item-name">焼きそば</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="ソース味 or 塩味" data-desc-en="Sauce or salt" data-desc-zh="酱味或盐味">ソース味 or 塩味</span></div><div class="ri-right"><span class="ri-price">¥660</span></div></div>
+  <div class="ri item" data-id="67" data-name-jp="焼きそば" data-name-en="Yakisoba" data-name-zh="炒面" data-price="660" data-choice-jp="ソース味|塩味" data-choice-en="Sauce|Salt" data-choice-zh="酱味|盐味"><div class="ri-thumb" onclick="openLB(this,'焼きそば（ソース味）')"><img src="img/thumb_yakisoba.jpg" alt="焼きそば" /></div><div class="ri-left"><span class="ri-name item-name">焼きそば</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="ソース味 or 塩味" data-desc-en="Sauce or salt" data-desc-zh="酱味或盐味">ソース味 or 塩味</span></div><div class="ri-right"><span class="ri-price">¥660</span></div></div>
   <div class="ri item" data-id="68" data-name-jp="ナポリタン焼きそば" data-name-en="Neapolitan Yakisoba" data-name-zh="那不勒斯炒面" data-price="803"><div class="ri-thumb" onclick="openLB(this,'ナポリタン焼きそば')"><img src="img/thumb_napolitan.jpg" alt="ナポリタン焼きそば" /></div><div class="ri-left"><span class="ri-name item-name">ナポリタン焼きそば</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥803</span></div></div>
-  <div class="ri item" data-id="69" data-name-jp="おにぎり" data-name-en="Onigiri (Rice Ball)" data-name-zh="饭团" data-price="330"><div class="ri-thumb" onclick="openLB(this,'おにぎり(明太子)')"><img src="img/thumb_onigiri.jpg" alt="おにぎり" /></div><div class="ri-left"><span class="ri-name item-name">おにぎり</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="梅 or 明太子" data-desc-en="Plum or Mentaiko" data-desc-zh="梅子或辣鳕鱼子">梅 or 明太子</span></div><div class="ri-right"><span class="ri-price">¥330</span></div></div>
+  <div class="ri item" data-id="69" data-name-jp="おにぎり" data-name-en="Onigiri (Rice Ball)" data-name-zh="饭团" data-price="330" data-choice-jp="梅|明太子" data-choice-en="Plum|Mentaiko" data-choice-zh="梅子|辣鳕鱼子"><div class="ri-thumb" onclick="openLB(this,'おにぎり(明太子)')"><img src="img/thumb_onigiri.jpg" alt="おにぎり" /></div><div class="ri-left"><span class="ri-name item-name">おにぎり</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="梅 or 明太子" data-desc-en="Plum or Mentaiko" data-desc-zh="梅子或辣鳕鱼子">梅 or 明太子</span></div><div class="ri-right"><span class="ri-price">¥330</span></div></div>
   <div class="ri item" data-id="70" data-name-jp="どて丼" data-name-en="Doteni Rice Bowl" data-name-zh="牛筋丼饭" data-price="748"><div class="ri-thumb" onclick="openLB(this,'どて丼')"><img src="img/thumb_dotedon.jpg" alt="どて丼" /></div><div class="ri-left"><span class="ri-name item-name">どて丼</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="どて煮のせ丼、生卵のせ" data-desc-en="Beef tendon stew on rice with egg" data-desc-zh="牛筋味噌盖饭配生蛋黄">どて煮のせ丼、生卵のせ</span></div><div class="ri-right"><span class="tag t-popular" data-t="tag_popular">人気</span><span class="ri-price">¥748</span></div></div>
   <div class="ri item" data-id="71" data-name-jp="お茶漬け" data-name-en="Ochazuke" data-name-zh="茶泡饭" data-price="418"><div class="ri-left"><span class="ri-name item-name">お茶漬け</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="のり・漬物・たこ" data-desc-en="Nori, pickles &amp; octopus in dashi" data-desc-zh="海苔、泡菜和章鱼">のり・漬物・たこ</span></div><div class="ri-right"><span class="ri-price">¥418</span></div></div>
 </div>
@@ -391,8 +396,8 @@
   <div class="ri item" data-id="78" data-name-jp="四ハイボール" data-name-en="Yonhai" data-name-zh="四合苏打" data-price="528"><div class="ri-left"><span class="ri-name item-name">四ハイボール</span><span class="ri-sub item-sub"></span></div><div class="ri-right"><span class="ri-price">¥528</span></div></div>
 
   <div class="cat"><h3 data-t="cat_whisky">ウイスキー</h3><div class="line"></div></div>
-  <div class="ri item" data-id="79" data-name-jp="JACK DANIEL'S 水割り・ロック" data-name-en="Jack Daniel's (Water/Rocks)" data-name-zh="JD威士忌" data-price="913"><div class="ri-left"><span class="ri-name item-name">JACK DANIEL'S</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="水割り or ロック" data-desc-en="Water or on the rocks" data-desc-zh="水割或加冰">水割り or ロック</span></div><div class="ri-right"><span class="ri-price">¥913</span></div></div>
-  <div class="ri item" data-id="80" data-name-jp="山崎 水割り・ロック" data-name-en="Yamazaki Single Malt" data-name-zh="山崎单一麦芽" data-price="913"><div class="ri-left"><span class="ri-name item-name">山崎</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="水割り or ロック" data-desc-en="Premium Japanese single malt" data-desc-zh="顶级日本单一麦芽">水割り or ロック</span></div><div class="ri-right"><span class="ri-price">¥913</span></div></div>
+  <div class="ri item" data-id="79" data-name-jp="JACK DANIEL'S 水割り・ロック" data-name-en="Jack Daniel's (Water/Rocks)" data-name-zh="JD威士忌" data-price="913" data-choice-jp="水割り|ロック" data-choice-en="With water|On the rocks" data-choice-zh="水割|加冰" data-memo-name-jp="JACK DANIEL'S" data-memo-name-en="Jack Daniel's" data-memo-name-zh="Jack Daniel's"><div class="ri-left"><span class="ri-name item-name">JACK DANIEL'S</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="水割り or ロック" data-desc-en="Water or on the rocks" data-desc-zh="水割或加冰">水割り or ロック</span></div><div class="ri-right"><span class="ri-price">¥913</span></div></div>
+  <div class="ri item" data-id="80" data-name-jp="山崎 水割り・ロック" data-name-en="Yamazaki Single Malt" data-name-zh="山崎单一麦芽" data-price="913" data-choice-jp="水割り|ロック" data-choice-en="With water|On the rocks" data-choice-zh="水割|加冰" data-memo-name-jp="山崎" data-memo-name-en="Yamazaki" data-memo-name-zh="山崎"><div class="ri-left"><span class="ri-name item-name">山崎</span><span class="ri-sub item-sub"></span><span class="ri-desc item-desc" data-desc-jp="水割り or ロック" data-desc-en="Premium Japanese single malt" data-desc-zh="顶级日本单一麦芽">水割り or ロック</span></div><div class="ri-right"><span class="ri-price">¥913</span></div></div>
 
   <div class="cat"><h3 data-t="cat_chuhai">チューハイ</h3><div class="line"></div><span class="cat-price">¥528</span></div>
   <div class="grid">
@@ -453,6 +458,15 @@
   <span data-t="memo_btn">メモ</span>&nbsp;<span id="memo-badge">0</span>
 </button>
 
+
+<!-- ══ Choice overlay (options) ══ -->
+<div class="ov" id="choice-ov">
+  <div class="ov-hd">
+    <button class="ov-back" type="button" onclick="closeChoice()" data-t="choice_cancel">← 戻る</button>
+    <h2 data-t="choice_title">オプションを選択</h2>
+  </div>
+  <div class="ov-body" id="choice-options"></div>
+</div>
 
 <!-- ══ Memo Overlay ══ -->
 <div class="ov" id="memo-ov">
@@ -551,6 +565,7 @@ const T={
     info_etc_title:'その他',info_etc_body:'全席喫煙可<br>席数 33席（カウンター・テーブル）<br>☎ 06-6346-1611',
     footer_text:'全品税込（10%）· テーブルチャージ ¥220/人',footer_hours:'平日 11:30–14:00 / 17:00–23:00 · 土 17:00–22:00',footer_closed:'定休日：日・祝',
     add_label:'追加',added:'✓',
+    choice_title:'オプションを選択',choice_cancel:'← 戻る',
   },
   en:{
     h_loc:'Osaka Ekimae 1st Bldg. B2F',h_smoke:'Smoking OK',h_pay:'Cards OK',h_tax:'Tax incl.',
@@ -575,6 +590,7 @@ const T={
     info_phrases_title:'💬 Useful Japanese',p1:'Excuse me (call staff)',p2:"I'll have this, please",p3:'One more, please',p4:'Cheers! 🍻',p5:'Delicious!',p6:'Check, please',
     footer_text:'All prices include tax (10%) · Table charge ¥220/person',footer_hours:'Weekdays 11:30–14:00 / 17:00–23:00 · Sat 17:00–22:00',footer_closed:'Closed: Sun & Holidays',
     add_label:'Add',added:'✓',
+    choice_title:'Choose an option',choice_cancel:'← Back',
   },
   zh:{
     h_loc:'大阪站前第1大厦 B2F',h_smoke:'可吸烟',h_pay:'可刷卡',h_tax:'含税',
@@ -599,11 +615,13 @@ const T={
     info_phrases_title:'💬 实用日语',p1:'呼叫服务员',p2:'请给我这个',p3:'再来一份',p4:'干杯！🍻',p5:'好吃！',p6:'请结账',
     footer_text:'所有价格含税（10%）· 座位费 ¥220/人',footer_hours:'工作日 11:30–14:00 / 17:00–23:00 · 周六 17:00–22:00',footer_closed:'休息日：周日·节假日',
     add_label:'加入',added:'✓',
+    choice_title:'请选择口味',choice_cancel:'← 返回',
   }
 };
 
 let lang=localStorage.getItem('menu_lang')||'jp';
 const memo={};
+let choicePickId=null;
 
 function updateStickyOffsets(){
   const hdr=document.querySelector('header');
@@ -622,7 +640,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const btn=document.createElement('button');
     btn.className='add-btn';btn.id='ab-'+id;
     btn.textContent=T[lang].add_label;
-    btn.onclick=e=>{e.stopPropagation();addToMemo(parseInt(id))};
+    btn.onclick=e=>{e.stopPropagation();addToMemoWithChoiceCheck(parseInt(id,10))};
     if(el.classList.contains('gi')){el.appendChild(btn)}
     else if(el.classList.contains('ri')){el.querySelector('.ri-right').appendChild(btn)}
     else if(el.classList.contains('ci')){
@@ -636,6 +654,14 @@ document.addEventListener('DOMContentLoaded',()=>{
       btn.style.cssText='height:44px;padding:0 20px;font-size:15px';
       wrap.appendChild(btn);hr.parentElement.appendChild(wrap);
     }
+  });
+  document.getElementById('memo-list').addEventListener('click',e=>{
+    const m=e.target.closest('[data-memo-action]');
+    if(!m)return;
+    const k=m.getAttribute('data-memo-key');
+    if(k==null||k==='')return;
+    if(m.dataset.memoAction==='minus')removeFromMemoKey(k);
+    else if(m.dataset.memoAction==='plus')addToMemoByKey(k);
   });
   setLang(lang);
 });
@@ -678,6 +704,8 @@ function setLang(l){
     if(!btn.classList.contains('has-qty'))btn.textContent=t.add_label;
   });
 
+  document.querySelectorAll('.item[data-id]').forEach(el=>refreshAddButtonForId(parseInt(el.dataset.id,10)));
+
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
 
   const intl=document.getElementById('info-intl');
@@ -700,34 +728,113 @@ function getItemData(id){
   return{id,nameJp:el.dataset.nameJp,nameEn:el.dataset.nameEn,nameZh:el.dataset.nameZh,price:parseInt(el.dataset.price)};
 }
 
-function addToMemo(id){
-  if(memo[id]){memo[id].qty++}
-  else{const d=getItemData(id);if(!d)return;memo[id]={...d,qty:1}}
-  gtag('event','add_to_memo',{item_id:id,item_name:memo[id].nameJp,quantity:memo[id].qty});
-  updateMemoUI();
-  const btn=document.getElementById('ab-'+id);
-  if(btn){
-    btn.textContent='× '+memo[id].qty;btn.classList.add('has-qty');
-    btn.classList.remove('pop');void btn.offsetWidth;btn.classList.add('pop');
+function memoKey(id,optIdx){return optIdx==null?String(id):`${id}||${optIdx}`}
+
+function getMemoBaseName(el,l){
+  const map={jp:['memoNameJp','nameJp'],en:['memoNameEn','nameEn'],zh:['memoNameZh','nameZh']};
+  const [m,f]=map[l];
+  return el.dataset[m]||el.dataset[f];
+}
+
+function formatStaffName(item){
+  const el=document.querySelector(`.item[data-id="${item.id}"]`);
+  if(!el)return '';
+  if(item.optIdx==null)return el.dataset.nameJp;
+  const base=getMemoBaseName(el,'jp');
+  const v=el.dataset.choiceJp.split('|')[item.optIdx];
+  return base+'（'+v+'）';
+}
+
+function getMemoDisplayLines(item){
+  const el=document.querySelector(`.item[data-id="${item.id}"]`);
+  if(!el)return{main:'',sub:''};
+  if(item.optIdx==null){
+    const nk=lang==='jp'?'nameJp':lang==='en'?'nameEn':'nameZh';
+    const main=el.dataset[nk];
+    const sub=lang!=='jp'?el.dataset.nameJp:'';
+    return{main,sub};
   }
+  const chKey=lang==='jp'?'choiceJp':lang==='en'?'choiceEn':'choiceZh';
+  const v=el.dataset[chKey].split('|')[item.optIdx];
+  const main=getMemoBaseName(el,lang)+'（'+v+'）';
+  const sub=lang!=='jp'?getMemoBaseName(el,'jp')+'（'+el.dataset.choiceJp.split('|')[item.optIdx]+'）':'';
+  return{main,sub};
+}
+
+function refreshAddButtonForId(id){
+  const sum=Object.values(memo).reduce((s,v)=>v.id===id?s+v.qty:s,0);
+  const btn=document.getElementById('ab-'+id);
+  if(!btn)return;
+  if(sum===0){btn.textContent=T[lang].add_label;btn.classList.remove('has-qty')}
+  else{btn.textContent='× '+sum;btn.classList.add('has-qty')}
+}
+
+function openChoiceOverlay(id){
+  choicePickId=id;
+  const el=document.querySelector(`.item[data-id="${id}"]`);
+  if(!el||!el.dataset.choiceJp)return;
+  const chKey=lang==='jp'?'choiceJp':lang==='en'?'choiceEn':'choiceZh';
+  const labels=el.dataset[chKey].split('|');
+  document.getElementById('choice-options').innerHTML=labels.map((t,i)=>
+    '<button type="button" class="choice-opt-btn" onclick="pickChoice('+i+')">'+t+'</button>').join('');
+  document.getElementById('choice-ov').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function pickChoice(idx){
+  const id=choicePickId;choicePickId=null;
+  document.getElementById('choice-ov').classList.remove('show');
+  document.body.style.overflow='';
+  if(id!=null)addToMemoEntry(id,idx);
+}
+
+function closeChoice(){
+  choicePickId=null;
+  document.getElementById('choice-ov').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+function addToMemoWithChoiceCheck(id){
+  const el=document.querySelector(`.item[data-id="${id}"]`);
+  if(el?.dataset.choiceJp){openChoiceOverlay(id);return}
+  addToMemoEntry(id,null);
+}
+
+function addToMemoEntry(id,optIdx){
+  const key=memoKey(id,optIdx);
+  if(!memo[key]){
+    const d=getItemData(id);if(!d)return;
+    memo[key]={id,price:d.price,qty:0,optIdx:optIdx==null?null:optIdx};
+  }
+  memo[key].qty++;
+  gtag('event','add_to_memo',{item_id:id,item_name:formatStaffName(memo[key]),option:optIdx,quantity:memo[key].qty});
+  updateMemoUI();
+  refreshAddButtonForId(id);
+  const btn=document.getElementById('ab-'+id);
+  if(btn){btn.classList.remove('pop');void btn.offsetWidth;btn.classList.add('pop')}
 }
 
 function addFromQD(btnEl,id){
-  addToMemo(id);
+  addToMemoWithChoiceCheck(id);
   btnEl.classList.add('added-flash');
   setTimeout(()=>btnEl.classList.remove('added-flash'),600);
 }
 
-function removeFromMemo(id){
-  if(!memo[id])return;
-  memo[id].qty--;
-  if(memo[id].qty<=0){delete memo[id];
-    const btn=document.getElementById('ab-'+id);
-    if(btn){btn.textContent=T[lang].add_label;btn.classList.remove('has-qty')}
-  }else{
-    const btn=document.getElementById('ab-'+id);
-    if(btn)btn.textContent='× '+memo[id].qty;
-  }
+function addToMemoByKey(key){
+  if(!memo[key])return;
+  memo[key].qty++;
+  gtag('event','add_to_memo',{item_id:memo[key].id,item_name:formatStaffName(memo[key]),quantity:memo[key].qty});
+  updateMemoUI();
+  refreshAddButtonForId(memo[key].id);
+  if(document.getElementById('memo-ov').classList.contains('show'))renderMemoList();
+}
+
+function removeFromMemoKey(key){
+  if(!memo[key])return;
+  const bid=memo[key].id;
+  memo[key].qty--;
+  if(memo[key].qty<=0)delete memo[key];
+  refreshAddButtonForId(bid);
   updateMemoUI();
   if(document.getElementById('memo-ov').classList.contains('show'))renderMemoList();
 }
@@ -739,26 +846,32 @@ function updateMemoUI(){
   fb.style.display=count>0?'flex':'none';
 }
 
+function escAttr(s){
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+}
+
 function renderMemoList(){
-  const t=T[lang];const nk=lang==='jp'?'nameJp':lang==='en'?'nameEn':'nameZh';
+  const t=T[lang];
   const entries=Object.entries(memo);
   const list=document.getElementById('memo-list');
   if(!entries.length){list.innerHTML='<div class="memo-empty">'+t.memo_empty+'</div>';return}
-  list.innerHTML=entries.map(([id,item])=>`
-    <div class="memo-item">
+  list.innerHTML=entries.map(([key,item])=>{
+    const {main,sub}=getMemoDisplayLines(item);
+    const kAttr=escAttr(key);
+    return`<div class="memo-item">
       <div class="memo-item-info">
-        <div class="memo-item-name">${item[nk]||item.nameJp}</div>
-        ${lang!=='jp'?'<div class="memo-item-jp">'+item.nameJp+'</div>':''}
+        <div class="memo-item-name">${main}</div>
+        ${sub?'<div class="memo-item-jp">'+sub+'</div>':''}
       </div>
       <div class="memo-item-right">
         <div class="memo-item-price">¥${(item.price*item.qty).toLocaleString()}</div>
         <div class="memo-item-ctrl">
-          <button class="memo-ctrl-btn" onclick="removeFromMemo(${id})">−</button>
+          <button type="button" class="memo-ctrl-btn" data-memo-action="minus" data-memo-key="${kAttr}">−</button>
           <span class="memo-ctrl-qty">${item.qty}</span>
-          <button class="memo-ctrl-btn" onclick="addToMemo(${id});renderMemoList()">+</button>
+          <button type="button" class="memo-ctrl-btn" data-memo-action="plus" data-memo-key="${kAttr}">+</button>
         </div>
       </div>
-    </div>`).join('');
+    </div>`}).join('');
 }
 
 function openMemo(){renderMemoList();document.getElementById('memo-ov').classList.add('show');document.body.style.overflow='hidden'}
@@ -766,9 +879,9 @@ function closeMemo(){document.getElementById('memo-ov').classList.remove('show')
 
 function showStaff(){
   const entries=Object.entries(memo);if(!entries.length)return;
-  gtag('event','show_to_staff',{item_count:entries.length,items:entries.map(([,i])=>i.nameJp).join(',')});
+  gtag('event','show_to_staff',{item_count:entries.length,items:entries.map(([,i])=>formatStaffName(i)).join(',')});
   document.getElementById('staff-list').innerHTML=entries.map(([,item])=>
-    `<div class="staff-row"><span class="staff-row-name">${item.nameJp}</span><span class="staff-row-qty">× ${item.qty}</span><span class="staff-row-price">¥${(item.price*item.qty).toLocaleString()}</span></div>`).join('');
+    `<div class="staff-row"><span class="staff-row-name">${formatStaffName(item)}</span><span class="staff-row-qty">× ${item.qty}</span><span class="staff-row-price">¥${(item.price*item.qty).toLocaleString()}</span></div>`).join('');
   document.getElementById('memo-ov').classList.remove('show');
   document.getElementById('staff-ov').classList.add('show');
 }
